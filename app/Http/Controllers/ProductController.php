@@ -24,6 +24,8 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $this->data['products'] = $this->productService->getAll();
+        if ($request->keyword != null)
+            $this->data['products'] = $this->productService->findByKeyword($request->keyword);
         $this->data['typeProducts'] = $this->typeProductService->getAll();
         if (auth()->user() != null)
             $this->data['carts'] = $this->cartService->getByUserId(auth()->user()->id);

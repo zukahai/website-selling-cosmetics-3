@@ -442,7 +442,9 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   text-decoration: none;
   color: #6c7ae0;
 }
-
+.main-menu > li > a {
+  text-decoration: none;
+}
 .main-menu > li:hover > .sub-menu {
   visibility: visible;
   opacity: 1;
