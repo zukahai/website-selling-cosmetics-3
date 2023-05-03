@@ -1,7 +1,7 @@
 @extends('admin.layout.main')
 
 @section('title')
-    Admin - Create product
+    Admin - Create blog
 @endsection
 
 @section('script')
@@ -9,7 +9,16 @@
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
         });
+        
     </script>
+    <script src="https://cdn.tiny.cloud/1/uvz9twni3jdi0u4gxcil3o99099o63a23k0j1gxujxm0cn1a/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+          selector: 'textarea',
+          plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+          toolbar: 'forecolor backcolor|undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+      </script>
 @endsection
 
 @section('content')

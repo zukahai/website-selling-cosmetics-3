@@ -81,8 +81,10 @@ Route::prefix('/admin')->middleware('checkAdmin')->group(function(){
         Route::get('/', [ContactController::class, 'index'])->name('admin.contact.index');
     });
     Route::prefix('/blog')->group(function(){
-        Route::get('/', [BlogController::class, 'createAdmin'])->name('admin.blog.create');
-        Route::post('/', [BlogController::class, 'solveCreateAdmin'])->name('admin.blog.solvecreate');
+        Route::get('/', [BlogController::class, 'indexAdmin'])->name('admin.blog.index');
+        Route::get('/create', [BlogController::class, 'createAdmin'])->name('admin.blog.create');
+        Route::post('/create', [BlogController::class, 'solveCreateAdmin'])->name('admin.blog.solvecreate');
+        Route::get('/delete/{id}', [BlogController::class, 'deleteAdmin'])->name('admin.blog.delete');
     });
 });
 

@@ -22,6 +22,16 @@ class BlogController extends Controller
         return View('user.pages.blog.index', $this->data);
     }
 
+    public function indexAdmin() {
+        $this->data['blogs'] = $this->blogService->getAll();
+        return View('admin.pages.blog.index', $this->data);
+    }
+
+    public function deleteAdmin($id) {
+        $this->blogService->delete($id);
+        return redirect()->back()->with('success', 'Xóa thành công');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -47,15 +57,14 @@ class BlogController extends Controller
         $blog->user_id = auth()->user()->id;
 
         $this->blogService->save($blog);
-        return redirect()->back()->with('success', 'Thêm thành công');
+        return redirect(route('admin.blog.index'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreBlogRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function blogDetail($id) {
+        $this->data['blog'] = $this->blogService->find($id);
+        return View('user.pages.blog.detail', $this->data);
+    }
+    
     public function store(StoreBlogRequest $request)
     {
         //

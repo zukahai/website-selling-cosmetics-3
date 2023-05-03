@@ -1,7 +1,7 @@
 @extends("user.layout.main")
 
 @section("title")
-    Blog
+    {{$blog->title}}
 @endsection
 
 @section("tag")
@@ -40,28 +40,21 @@
             text-align: center;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
+        img{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
     </style>
 @endsection
 
 @section("content")
-        <section class="blog-list px-3 py-5 p-md-5">
+    <div class="container">
+        <a href="{{route('user.blog')}}">Các bài blog khác</a>
 
-		    <div class="container">
-				@foreach ($blogs as $item)
-				<div class="item mb-5">
-				    <div class="media">
-					    <img class="d-none d-md-flex blog-img" src="{{url($item->urlImage)}}" alt="image">
-					    <div class="media-body">
-						    <h3 class="title mb-1"><a href="{{route('user.blog.detail', ['id'=>$item->id])}}">{{$item->title}}</a></h3>
-						    <div class="intro">{{$item->created_at}}</div>
-						    <a class="more-link" href="{{route('user.blog.detail', ['id'=>$item->id])}}">Read more &rarr;</a>
-					    </div><!--//media-body-->
-				    </div><!--//media-->
-			    </div><!--//item-->
-				@endforeach
-			
-		    </div>
-	    </section>
+        {!!$blog->content!!}
+    </div>
 @endsection
 
 @section('scripts')

@@ -12,12 +12,16 @@ User:
  - Thanh toán đơn hàng (Tự động - API auto bank) ✔️
  - User không thể vào các trang của admin ✔️
  - Gửi nội dung cần hỗ trợ lên admin ✔️
+ - Xem danh sách blog ✔️
+ - Xem chi tiết blog ✔️
 Admin:
   - Quản lí người dùng (Xem, khoá / mở khoá tài khoản) ✔️
   - Quản lí sản phẩm (Thêm sửa xoá) ✔️
   - Quản lí loại sản phẩm (Thêm sửa xoá) ✔️
   - Xem các đơn hàng đã thanh toán ✔️
   - Xem danh sách cần hỗ trợ ✔️
+  - Xem danh sách blog ✔️
+  - Xoá blog ✔️
   
 Chung:
   - Validate dữ liệu các form ✔️
