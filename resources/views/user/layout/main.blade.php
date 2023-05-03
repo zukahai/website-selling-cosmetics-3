@@ -86,6 +86,9 @@
                             <a href="{{route('user.about')}}">About</a>
                         </li>
 
+                        <li class="{{($tag == 'blog') ? "active-menu" : ""}}">
+                            <a href="{{route('user.blog')}}">Blog</a>
+                        </li>
                         <li class="{{($tag == 'contact') ? "active-menu" : ""}}">
                             <a href="{{route('user.contact')}}">Contact</a>
                         </li>
@@ -97,6 +100,10 @@
                     <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                         <i class="zmdi zmdi-search"></i>
                     </div>
+                    @php
+                    $id = (auth()->check()) ? auth()->user()->id : 0;
+                    $carts = \App\Models\Cart::where('user_id', '=', $id)->get();
+                    @endphp
 
                     <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="{{(auth()->check()) ? $carts->count() : "0"}}">
                         <i class="zmdi zmdi-shopping-cart"></i>
@@ -114,7 +121,7 @@
     <div class="wrap-header-mobile">
         <!-- Logo moblie -->
         <div class="logo-mobile">
-            <a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+            <a href="index.html"><img src="{{url('asset/user/images/icons/logo.png')}}" alt="IMG-LOGO"></a>
         </div>
 
         <!-- Icon header -->
@@ -411,7 +418,7 @@
 
             <p class="stext-107 cl6 txt-center">
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a target="_blank">Nguyen Van Hung</a> &amp; <a target="_blank">Le Khanh Dat</a>
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a target="_blank">Mai Hồng</a>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
             </p>

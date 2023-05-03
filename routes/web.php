@@ -8,6 +8,7 @@ use App\Http\Controllers\TypeProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AutoBankController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/')->group(function(){
@@ -42,6 +43,10 @@ Route::prefix('/')->group(function(){
     Route::prefix('/contact')->group(function(){
         Route::post('/create', [ContactController::class, 'create'])->name('user.contact.create');
     });
+    Route::prefix('/blog')->group(function(){
+        Route::get('/', [BlogController::class, 'index'])->name('user.blog');
+        Route::get('/{id}', [BlogController::class, 'blogDetail'])->name('user.blog.detail');
+    });
 });
 
 Route::prefix('/admin')->middleware('checkAdmin')->group(function(){
@@ -74,6 +79,10 @@ Route::prefix('/admin')->middleware('checkAdmin')->group(function(){
     });
     Route::prefix('/contact')->group(function(){
         Route::get('/', [ContactController::class, 'index'])->name('admin.contact.index');
+    });
+    Route::prefix('/blog')->group(function(){
+        Route::get('/', [BlogController::class, 'createAdmin'])->name('admin.blog.create');
+        Route::post('/', [BlogController::class, 'solveCreateAdmin'])->name('admin.blog.solvecreate');
     });
 });
 

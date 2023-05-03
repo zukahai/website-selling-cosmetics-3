@@ -59,6 +59,12 @@
             </li>
 
             <li>
+                <a href="{{route('admin.blog.create')}}">
+                    <i class="zmdi zmdi-grid"></i> <span>Blog</span>
+                </a>
+            </li>
+
+            <li>
                 <a href="{{route('admin.contact.index')}}">
                     <i class="zmdi zmdi-grid"></i> <span>Contacts</span>
                 </a>

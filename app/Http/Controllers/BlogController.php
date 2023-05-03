@@ -5,17 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
+use App\Http\Services\BlogService;
+use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public $data = [];
+    public function __construct(BlogService $blogService)
+    {
+        $this->blogService = $blogService;
+    }
+
     public function index()
     {
-        //
+        $this->data['blogs'] = $this->blogService->getAll();
+        return View('user.pages.blog.index', $this->data);
     }
 
     /**
@@ -23,9 +27,27 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createAdmin()
     {
-        //
+        return View('admin.pages.blog.create');
+    }
+
+    public function solveCreateAdmin(Request $request) {
+        if ($request->hasFile('image')) {
+            $file = $request->image;
+            $path = $file->store('images');
+            $file->move(public_path('images'), $path);
+        } else {
+            return "Vui long chon file";
+        }
+        $blog = new Blog();
+        $blog->title = $request->title;
+        $blog->content = $request->content;
+        $blog->urlImage = $path;
+        $blog->user_id = auth()->user()->id;
+
+        $this->blogService->save($blog);
+        return redirect()->back()->with('success', 'Thêm thành công');
     }
 
     /**
